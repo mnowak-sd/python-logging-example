@@ -27,17 +27,7 @@ logger = logging.getLogger('example')
 
 def example_logging_structured():
     # structlog setup
-    def timestamper(_, __, event_dict):
-        event_dict["time"] = datetime.datetime.now().isoformat()
-        return event_dict
-
-    structlog.configure(processors=[
-        timestamper,
-        structlog.processors.add_log_level,
-        structlog.processors.JSONRenderer()
-        ])
     logger = structlog.get_logger()
-
     logger.info("""example_logging_structured:
 
 # structlog setup
